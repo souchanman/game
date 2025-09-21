@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+    <title>CoC キャラクターシート</title>
+      <style>
+          body { font-family: sans-serif; margin: 20px; }
+              h2 { margin-top: 1.5em; }
+                  table { border-collapse: collapse; width: 100%; margin-bottom: 1em; }
+                      td, th { border: 1px solid #aaa; padding: 5px; text-align: center; }
+                          input[type="number"] { width: 60px; }
+                              input[type="text"] { width: 150px; }
+                                </style>
+                                </head>
+                                <body>
+                                  <h1>クトゥルフ神話TRPG キャラクターシート</h1>
+
+                                    <h2>基本情報</h2>
+                                      名前: <input type="text" id="name"><br>
+                                        職業: <input type="text" id="job"><br>
+                                          年齢: <input type="number" id="age"><br>
+                                            性別: <input type="text" id="gender"><br>
+
+                                              <h2>能力値</h2>
+                                                <table>
+                                                    <tr><th>STR</th><th>DEX</th><th>INT</th><th>CON</th><th>APP</th><th>POW</th><th>SIZ</th><th>EDU</th></tr>
+                                                        <tr>
+                                                              <td><input type="number" id="str"></td>
+                                                                    <td><input type="number" id="dex"></td>
+                                                                          <td><input type="number" id="int"></td>
+                                                                                <td><input type="number" id="con"></td>
+                                                                                      <td><input type="number" id="app"></td>
+                                                                                            <td><input type="number" id="pow"></td>
+                                                                                                  <td><input type="number" id="siz"></td>
+                                                                                                        <td><input type="number" id="edu"></td>
+                                                                                                            </tr>
+                                                                                                              </table>
+
+                                                                                                                <h2>技能</h2>
+                                                                                                                  <table>
+                                                                                                                      <tr><th>技能</th><th>値</th></tr>
+                                                                                                                          <tr><td>目星</td><td><input type="number" id="spot"></td></tr>
+                                                                                                                              <tr><td>聞き耳</td><td><input type="number" id="listen"></td></tr>
+                                                                                                                                  <tr><td>図書館</td><td><input type="number" id="library"></td></tr>
+                                                                                                                                      <tr><td>心理学</td><td><input type="number" id="psychology"></td></tr>
+                                                                                                                                        </table>
+
+                                                                                                                                          <button onclick="saveData()">保存</button>
+                                                                                                                                            <button onclick="loadData()">読込</button>
+
+                                                                                                                                              <script>
+                                                                                                                                                  function saveData(){
+                                                                                                                                                        const fields = document.querySelectorAll("input");
+                                                                                                                                                              let data = {};
+                                                                                                                                                                    fields.forEach(f => data[f.id] = f.value);
+                                                                                                                                                                          localStorage.setItem("coc_char", JSON.stringify(data));
+                                                                                                                                                                                alert("保存しました");
+                                                                                                                                                                                    }
+                                                                                                                                                                                        function loadData(){
+                                                                                                                                                                                              let data = JSON.parse(localStorage.getItem("coc_char")||"{}");
+                                                                                                                                                                                                    Object.keys(data).forEach(id => {
+                                                                                                                                                                                                            if(document.getElementById(id)){
+                                                                                                                                                                                                                      document.getElementById(id).value = data[id];
+                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                          alert("読込完了");
+                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                </script>
+                                                                                                                                                                                                                                                </body>
+                                                                                                                                                                                                                                                </html>
+                                                                                                                                                                                                                                                
